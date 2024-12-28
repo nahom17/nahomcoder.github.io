@@ -1,0 +1,208 @@
+ html {
+     -webkit-text-size-adjust: 100%;
+     -webkit-font-feature-settings: normal;
+     font-feature-settings: normal;
+     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+     line-height: 1.5;
+     tab-size: 4;
+     -webkit-tap-highlight-color: transparent;
+ }
+
+ body {
+     line-height: inherit;
+     margin: 0;
+     background: linear-gradient(190deg,
+             #8f268a 100%,
+             #b302f9 100%,
+             #02a8f5 100%,
+             #0237f7 100%);
+     color: whitesmoke;
+     /* Choose your desired gradient colors */
+     background-size: 200% 200%;
+     animation: gradient 10s ease infinite;
+ }
+
+ @keyframes gradient {
+     0% {
+         background-position: 0% 50%;
+     }
+
+     50% {
+         background-position: 100% 50%;
+     }
+
+     100% {
+         background-position: 50% 50%;
+     }
+
+ }
+
+ #landing {
+     background: linear-gradient(190deg,
+             #8f268a 100%,
+             #b302f9 100%,
+             #02a8f5 100%,
+             #0237f7 100%);
+     color: whitesmoke;
+     /* Choose your desired gradient colors */
+     background-size: 200% 200%;
+     animation: gradient 10s ease infinite;
+ }
+
+ @keyframes gradient {
+     0% {
+         background-position: 0% 50%;
+     }
+
+     50% {
+         background-position: 100% 50%;
+     }
+
+     100% {
+         background-position: 50% 50%;
+     }
+ }
+
+ #landing h1,
+ #landing p,
+ #landing .btn,
+ .navbar {
+     opacity: 0;
+     transform: translateX(-100%);
+     animation: slideInRight 1s forwards;
+ }
+
+ @keyframes slideInRight {
+     from {
+         opacity: 0;
+         transform: translateX(-100%);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateX(0);
+     }
+ }
+
+ .hero {
+
+     font-family: 'Orbitron';
+     font-style: normal;
+     font-weight: 600;
+     font-size: 46px;
+     line-height: 64px;
+     margin-bottom: 1.5rem;
+ }
+
+ h2 {
+     font-family: 'Orbitron';
+     font-style: bold;
+     font-size: 26px;
+     margin-bottom: 1.5rem;
+     font-weight: 600;
+     line-height: 46px;
+     color: #ffffff;
+ }
+
+ .me {
+     font-family: 'Rajdhani';
+     font-style: normal;
+     font-weight: 400;
+     font-size: 18px;
+     line-height: 32px;
+     color: #1a202c;
+ }
+
+
+ .fadeIn {
+     opacity: 0;
+     transform: translateY(20px);
+     animation: fadeInAnimation 1s ease-in-out forwards;
+ }
+
+ @keyframes fadeInAnimation {
+     from {
+         opacity: 0;
+         transform: translateY(20px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
+ .skill-card {
+     text-align: center;
+     margin-bottom: 30px;
+ }
+
+ #skills h3 {
+     font-family: 'Orbitron';
+     font-style: normal;
+     font-weight: 600;
+     font-size: 26px;
+     line-height: 46px;
+     color: #f8f9fa;
+
+ }
+
+ #skills {
+     background: linear-gradient(190deg,
+             #8f268a 100%,
+             #b302f9 100%,
+             #02a8f5 100%,
+             #0237f7 100%);
+     color: whitesmoke;
+     /* Choose your desired gradient colors */
+     background-size: 200% 200%;
+     animation: gradient 10s ease infinite;
+ }
+
+ @keyframes gradient {
+     0% {
+         background-position: 0% 50%;
+     }
+
+     50% {
+         background-position: 100% 50%;
+     }
+
+     100% {
+         background-position: 50% 50%;
+     }
+ }
+
+ @media (min-width: 992px) {
+     .navbar.fixed-top {
+         position: fixed;
+         width: 100%;
+         top: 0;
+         z-index: 1000;
+     }
+ }
+
+ @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+     .col-md-4,
+     .skill-card {
+         margin-bottom: 15px;
+         margin-top: 15px;
+     }
+
+     .skill-card {
+         Text-align: center;
+     }
+
+     #landing {
+         background: linear-gradient(190deg,
+                 #ff56f6 100%,
+                 #b936ee 100%,
+                 #3bace2 100%,
+                 #406aff 100%);
+         /* Choose your desired gradient colors */
+         background-size: cover;
+         animation: gradient 10s ease infinite;
+     }
+
+}
