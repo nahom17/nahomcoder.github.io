@@ -1,216 +1,928 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Nahom Tesfamichael">
+    <meta property="og:title" content="Nahom Tesfamichael - PHP Laravel Developer">
     <meta property="og:site_name" content="Nahom Tesfamichael">
     <meta property="og:url" content="https://www.nahomtesfamichael.com">
     <meta property="og:image" content="https://www.nahomtesfamichael.com/images/brand.png">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="I'm a passionate software developer currently based in the Netherlands.">
-    <title>Nahom Portfolio</title>
+    <meta property="og:description" content="Full-stack developer specializing in PHP & Laravel, based in the Netherlands.">
+    <title>Nahom Tesfamichael | PHP Laravel Developer</title>
     <link rel="icon" href="images/brand.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts: Sora (display) + DM Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy:   #0a0f1e;
+            --deep:   #0d1530;
+            --card:   #111827;
+            --accent: #3b82f6;
+            --accent2:#06b6d4;
+            --green:  #22c55e;
+            --text:   #e2e8f0;
+            --muted:  #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Sora', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--navy); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+        /* ── Hero gradient ── */
+        .hero-bg {
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59,130,246,0.25) 0%, transparent 70%),
+                        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(6,182,212,0.12) 0%, transparent 60%),
+                        var(--navy);
+        }
+
+        /* Animated grid overlay */
+        .grid-overlay {
+            background-image:
+                linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* ── Badge pill ── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(59,130,246,0.12);
+            border: 1px solid rgba(59,130,246,0.3);
+            color: #93c5fd;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 999px;
+        }
+
+        /* ── Glow button ── */
+        .btn-glow {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 28px rgba(59,130,246,0.4);
+            text-decoration: none;
+        }
+        .btn-glow:hover {
+            background: #2563eb;
+            box-shadow: 0 0 40px rgba(59,130,246,0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid rgba(255,255,255,0.25);
+            color: #fff;
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            padding: 13px 30px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(6px);
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #22c55e;
+            color: #fff;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 16px 36px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 32px rgba(34,197,94,0.35);
+        }
+        .btn-whatsapp:hover {
+            background: #16a34a;
+            box-shadow: 0 0 48px rgba(34,197,94,0.55);
+            transform: translateY(-3px);
+        }
+
+        /* ── Section divider line ── */
+        .divider {
+            width: 60px;
+            height: 3px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            margin: 0 auto 3.5rem;
+        }
+
+        /* ── Glass card ── */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            transition: all 0.35s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(59,130,246,0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(59,130,246,0.08);
+        }
+
+        /* ── Project card ── */
+        .project-card {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.35s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59,130,246,0.35);
+            box-shadow: 0 24px 50px rgba(0,0,0,0.45), 0 0 24px rgba(59,130,246,0.1);
+        }
+        .project-card img {
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.06);
+        }
+
+        /* ── Skill item ── */
+        .skill-item {
+            background: rgba(17,24,39,0.8);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            border-color: rgba(59,130,246,0.4);
+            box-shadow: 0 12px 30px rgba(59,130,246,0.15);
+        }
+
+        /* ── Service card (NahomApp) ── */
+        .service-card {
+            background: rgba(17,24,39,0.85);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            transition: all 0.35s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .service-card.restaurant::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+        .service-card.business::before  { background: linear-gradient(90deg, #22c55e, #06b6d4); }
+        .service-card.salon::before     { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+        }
+
+        /* ── Why Me card ── */
+        .why-card {
+            background: rgba(17,24,39,0.7);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 18px;
+            transition: all 0.3s ease;
+        }
+        .why-card:hover {
+            border-color: rgba(59,130,246,0.3);
+            box-shadow: 0 16px 36px rgba(59,130,246,0.1);
+        }
+
+        /* ── Fade in on load ── */
+        .fade-in {
+            animation: fadeUp 0.9s ease both;
+        }
+        .fade-in-delay-1 { animation: fadeUp 0.9s 0.15s ease both; }
+        .fade-in-delay-2 { animation: fadeUp 0.9s 0.3s ease both; }
+        .fade-in-delay-3 { animation: fadeUp 0.9s 0.45s ease both; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Nav link ── */
+        .nav-link {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-link:hover { color: #60a5fa; }
+
+        /* ── Section alt bg ── */
+        .section-alt {
+            background: rgba(255,255,255,0.015);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        /* tag pill */
+        .tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+
+        /* Profile ring pulse */
+        .profile-ring {
+            position: relative;
+            display: inline-block;
+        }
+        .profile-ring::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(59,130,246,0.5);
+            animation: ringPulse 3s ease-in-out infinite;
+        }
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+
+        /* Availability dot */
+        .avail-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: blink 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container -fluid">
-            <a class="navbar-brand" href="#landing"><i class="fas fa-code"></i>Nahom Tesfamichael</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════ -->
+<nav class="fixed w-full top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <a href="#landing" class="flex items-center gap-2 text-white font-bold text-lg" style="font-family:'Sora',sans-serif; text-decoration:none;">
+                <span class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-sm"><i class="fas fa-code"></i></span>
+                Nahom Tesfamichael
+            </a>
+
+            <!-- Desktop -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about"     class="nav-link"><i class="fas fa-user-circle text-xs"></i> About</a>
+                <a href="#skills"    class="nav-link"><i class="fas fa-cogs text-xs"></i> Skills</a>
+                <a href="#services"  class="nav-link"><i class="fas fa-briefcase text-xs"></i> Services</a>
+                <a href="#portfolio" class="nav-link"><i class="fas fa-folder-open text-xs"></i> Portfolio</a>
+                <a href="https://wa.me/31687073858" target="_blank"
+                   class="btn-glow" style="padding:9px 22px; font-size:0.85rem; border-radius:9px;">
+                    <i class="fab fa-whatsapp"></i> Hire Me — Free Quote
+                </a>
+            </div>
+
+            <!-- Mobile toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-white text-xl">
+                <i class="fas fa-bars"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#about"><i class="fas fa-user-circle"></i> About</a>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-white/5 px-4 py-4 space-y-3">
+        <a href="#about"     class="block nav-link py-2">About</a>
+        <a href="#skills"    class="block nav-link py-2">Skills</a>
+        <a href="#services"  class="block nav-link py-2">Services</a>
+        <a href="#portfolio" class="block nav-link py-2">Portfolio</a>
+        <a href="https://wa.me/31687073858" target="_blank"
+           class="block bg-green-600 text-white text-center py-2 px-4 rounded-lg font-semibold" style="text-decoration:none;">
+            <i class="fab fa-whatsapp mr-2"></i>Hire Me — Free Quote
+        </a>
+    </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════════ -->
+<section id="landing" class="hero-bg grid-overlay min-h-screen flex items-center justify-center pt-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+
+        <!-- Available badge -->
+        <div class="fade-in mb-8 flex justify-center">
+            <span class="badge">
+                <span class="avail-dot"></span>
+                Available for freelance projects
+            </span>
+        </div>
+
+        <!-- Profile image -->
+        <div class="fade-in-delay-1 mb-8 flex justify-center">
+            <div class="profile-ring">
+                <img src="images/brand.png" alt="Nahom Tesfamichael"
+                     class="w-28 h-28 rounded-full object-cover border-4 border-blue-500/60 shadow-2xl">
+            </div>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="fade-in-delay-1 text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" style="font-family:'Sora',sans-serif;">
+            Hi, I'm <span style="background: linear-gradient(135deg,#60a5fa,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Nahom Tesfamichael</span>
+        </h1>
+
+        <!-- Subheadline with VALUE -->
+        <p class="fade-in-delay-2 text-lg md:text-xl text-slate-300 mb-3 font-medium">
+            PHP Laravel Developer · I build web apps that solve real problems
+        </p>
+        <p class="fade-in-delay-2 text-base md:text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Need a restaurant website, booking system, or custom web app?
+            <span style="color:#60a5fa; font-weight:600;">Let's build it together.</span>
+        </p>
+
+        <!-- CTAs -->
+        <div class="fade-in-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#portfolio" class="btn-glow text-base">
+                <i class="fas fa-eye"></i>
+                See What I Can Build For You
+            </a>
+            <a href="https://wa.me/31687073858" target="_blank" class="btn-outline text-base">
+                <i class="fab fa-whatsapp"></i>
+                Hire Me — Free Quote
+            </a>
+        </div>
+
+        <!-- Stats row -->
+        <div class="fade-in-delay-3 mt-16 grid grid-cols-3 gap-6 max-w-sm mx-auto">
+            <div class="text-center">
+                <div class="text-2xl font-bold text-white" style="font-family:'Sora',sans-serif;">3+</div>
+                <div class="text-xs text-slate-500 mt-1">Projects Built</div>
+            </div>
+            <div class="text-center border-x border-white/10">
+                <div class="text-2xl font-bold text-white" style="font-family:'Sora',sans-serif;">8y</div>
+                <div class="text-xs text-slate-500 mt-1">In Netherlands</div>
+            </div>
+            <div class="text-center">
+                <div class="text-2xl font-bold text-white" style="font-family:'Sora',sans-serif;">100%</div>
+                <div class="text-xs text-slate-500 mt-1">Dedicated</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT SECTION
+════════════════════════════════════════════════ -->
+<section id="about" class="py-24 section-alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm font-semibold text-blue-400 uppercase tracking-widest mb-3">Who I am</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">About Me</h2>
+        <div class="divider"></div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-5 text-slate-400 leading-relaxed text-base">
+                <p>
+                    Hello! I'm <span class="text-white font-semibold">Nahom Tesfamichael</span>, a dedicated software developer based in the Netherlands. Originally from Eritrea, I've been living here for nearly 8 years, pursuing my passion for software development.
+                </p>
+                <p>
+                    I'm currently studying software development at <span class="text-white font-semibold">Alfa-College Groningen</span>, continuously expanding my knowledge and honing my skills in modern web technologies.
+                </p>
+                <p>
+                    As a developer, I specialize in <span class="text-blue-400 font-semibold">PHP and the Laravel framework</span>, with proficiency in Tailwind CSS, Bootstrap, and Livewire. I'm passionate about creating efficient, scalable web applications and always eager to learn new technologies.
+                </p>
+                <p>
+                    Beyond coding, I have a passion for photography and content creation — I enjoy capturing inspiring moments and sharing tutorials on YouTube, combining my technical skills with creative expression.
+                </p>
+            </div>
+
+            <div class="glass-card p-8">
+                <h3 class="text-xl font-bold text-white mb-6">Quick Facts</h3>
+                <ul class="space-y-5">
+                    <li class="flex items-start gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-map-marker-alt text-blue-400 text-sm"></i>
+                        </span>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Location</div>
+                            <div class="text-white font-medium">Groningen, Netherlands</div>
+                        </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#skills"><i class="fas fa-cogs"></i> Skills</a>
+                    <li class="flex items-start gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-graduation-cap text-blue-400 text-sm"></i>
+                        </span>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Education</div>
+                            <div class="text-white font-medium">Alfa-College Groningen</div>
+                        </div>
                     </li>
-                    <li>
-                        <a class="nav-link active" href="#portfolio"><i class="fas fa-folder-open"></i> Portfolio</a>
+                    <li class="flex items-start gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-code text-blue-400 text-sm"></i>
+                        </span>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Specialization</div>
+                            <div class="text-white font-medium">PHP & Laravel Development</div>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-camera text-blue-400 text-sm"></i>
+                        </span>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Interests</div>
+                            <div class="text-white font-medium">Photography, Content Creation</div>
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav>
-    <!-- Landing Page Section -->
-    <section id="landing" class="py-5 text-center text-white">
-        <div class="container">
-            <h1 class="display-4 mb-4 hero">Hello, I'm a PHP(Laravel) Backend Developer</h1>
-            <p class="lead mb-4">With expertise in PHP, Laravel, and more</p>
-            <a href="#about" class="btn btn-primary btn-lg">Learn More</a>
-        </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <!-- About Section -->
-    <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">About Me</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="./images/brand.png" class="img-fluid rounded-circle mb-3 mt-3" alt="Nahom profile">
+
+<!-- ═══════════════════════════════════════════════
+     SKILLS SECTION
+════════════════════════════════════════════════ -->
+<section id="skills" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm font-semibold text-blue-400 uppercase tracking-widest mb-3">Tech Stack</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">Technical Skills</h2>
+        <div class="divider"></div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
+            <div class="skill-item p-6 text-center">
+                <i class="fab fa-php text-5xl text-indigo-400 mb-3"></i>
+                <h3 class="font-semibold text-white text-base">PHP</h3>
+            </div>
+
+            <div class="skill-item p-6 text-center">
+                <i class="fab fa-laravel text-5xl text-red-400 mb-3"></i>
+                <h3 class="font-semibold text-white text-base">Laravel</h3>
+            </div>
+
+            <div class="skill-item p-6 text-center">
+                <i class="fab fa-bootstrap text-5xl text-purple-400 mb-3"></i>
+                <h3 class="font-semibold text-white text-base">Bootstrap</h3>
+            </div>
+
+            <div class="skill-item p-6 text-center">
+                <svg class="w-12 h-12 mx-auto mb-3 text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/>
+                </svg>
+                <h3 class="font-semibold text-white text-base">Tailwind CSS</h3>
+            </div>
+
+            <div class="skill-item p-6 text-center">
+                <i class="fas fa-database text-5xl text-green-400 mb-3"></i>
+                <h3 class="font-semibold text-white text-base">SQL</h3>
+            </div>
+
+            <div class="skill-item p-6 text-center">
+                <i class="fab fa-git-alt text-5xl text-orange-400 mb-3"></i>
+                <h3 class="font-semibold text-white text-base">Git</h3>
+            </div>
+
+            <div class="skill-item p-6 text-center">
+                <i class="fab fa-gitlab text-5xl text-orange-500 mb-3"></i>
+                <h3 class="font-semibold text-white text-base">GitLab</h3>
+            </div>
+
+            <div class="skill-item p-6 text-center">
+                <i class="fas fa-bolt text-5xl text-yellow-400 mb-3"></i>
+                <h3 class="font-semibold text-white text-base">Livewire</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     NAHOMAPP SERVICES SECTION
+════════════════════════════════════════════════ -->
+<section id="services" class="py-24 section-alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm font-semibold text-blue-400 uppercase tracking-widest mb-3">NahomApp</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center text-white mb-3">Websites I Build For Businesses</h2>
+        <p class="text-center text-slate-400 max-w-xl mx-auto mb-4">
+            Specialised websites for restaurants, shops, and salons — with online booking, menus, and more.
+        </p>
+        <div class="divider"></div>
+
+        <!-- Special offer badge -->
+        <div class="flex justify-center mb-10">
+            <div class="inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-sm font-semibold px-5 py-2 rounded-full">
+                💰 Special Offer for Young Eritrean Businesses
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-7">
+
+            <!-- Restaurant -->
+            <div class="service-card restaurant p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="text-3xl">🍽️</span>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Restaurant Websites</h4>
+                        <p class="text-xs text-yellow-400/80">ናሕሶም · Restaurants</p>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <h3 class="mb-3">Nahom Tesfamichael</h3>
-                    <p>Hello! My name is Nahom Tesfamichael, a dedicated and passionate software developer based in the
-                        Netherlands.
-                        Originally from Eritrea, I have been living in this beautiful country for nearly 8 years,
-                        pursuing my dreams
-                        and expanding my knowledge in the field of software development.</p>
-                    <p>I am currently studying software development at Alfa-College Groningen, where I am honing my
-                        skills and
-                        gaining valuable experience. My journey has been both challenging and rewarding, shaping me into
-                        a resilient
-                        and determined individual.</p>
-                    <p>As a developer, I specialize in PHP and the Laravel framework, and I am proficient in various
-                        other
-                        technologies including Tailwind CSS, Bootstrap, and Livewire. I am always eager to learn new
-                        technologies and
-                        improve my skills.</p>
-                    <p>In addition to coding, I have a passion for photography and content creation. I enjoy capturing
-                        moments of
-                        beauty and inspiration through my lens and sharing my experiences and tutorials on YouTube.</p>
-                    <p>Feel free to explore my portfolio and get in touch if you would like to collaborate or learn more
-                        about my
-                        work.</p>
+                <ul class="space-y-3 mb-7">
+                    <li class="flex items-start gap-2 text-slate-300 text-sm">
+                        <span class="text-green-400 mt-0.5">✅</span>
+                        <span><span class="text-white font-medium">Online Menu System</span> — digital menu your customers can browse anytime</span>
+                    </li>
+                    <li class="flex items-start gap-2 text-slate-300 text-sm">
+                        <span class="text-green-400 mt-0.5">✅</span>
+                        <span><span class="text-white font-medium">Table Reservation</span> — online booking straight to your calendar</span>
+                    </li>
+                </ul>
+                <a href="https://nahomapp.com/amore/restaurant.html" target="_blank"
+                   class="block text-center bg-yellow-500/10 hover:bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 font-semibold py-3 rounded-xl transition text-sm" style="text-decoration:none;">
+                    View Demo <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Business -->
+            <div class="service-card business p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="text-3xl">🏪</span>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Business Websites</h4>
+                        <p class="text-xs text-green-400/80">ንዕዋ ሓደ ዝወደምካሉ</p>
+                    </div>
+                </div>
+                <ul class="space-y-3 mb-7">
+                    <li class="flex items-start gap-2 text-slate-300 text-sm">
+                        <span class="text-green-400 mt-0.5">✅</span>
+                        <span><span class="text-white font-medium">Product Catalog</span> — showcase everything you offer with photos & prices</span>
+                    </li>
+                    <li class="flex items-start gap-2 text-slate-300 text-sm">
+                        <span class="text-green-400 mt-0.5">✅</span>
+                        <span><span class="text-white font-medium">Appointment Booking</span> — let customers book appointments online</span>
+                    </li>
+                </ul>
+                <a href="https://demo.nahomapp.com/" target="_blank"
+                   class="block text-center bg-green-500/10 hover:bg-green-500/20 border border-green-500/30 text-green-400 font-semibold py-3 rounded-xl transition text-sm" style="text-decoration:none;">
+                    View Demo <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Salon -->
+            <div class="service-card salon p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="text-3xl">✂️</span>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Salon Websites</h4>
+                        <p class="text-xs text-purple-400/80">Barber · Salon · Beauty</p>
+                    </div>
+                </div>
+                <ul class="space-y-3 mb-7">
+                    <li class="flex items-start gap-2 text-slate-300 text-sm">
+                        <span class="text-green-400 mt-0.5">✅</span>
+                        <span><span class="text-white font-medium">Service Portfolio</span> — show your work, styles & specialties</span>
+                    </li>
+                    <li class="flex items-start gap-2 text-slate-300 text-sm">
+                        <span class="text-green-400 mt-0.5">✅</span>
+                        <span><span class="text-white font-medium">Online Booking</span> — let clients schedule appointments 24/7</span>
+                    </li>
+                    <li class="flex items-start gap-2 text-slate-300 text-sm">
+                        <span class="text-green-400 mt-0.5">✅</span>
+                        <span><span class="text-white font-medium">Price List</span> — display all services and prices clearly</span>
+                    </li>
+                </ul>
+                <a href="https://barber.nahomapp.com/" target="_blank"
+                   class="block text-center bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-400 font-semibold py-3 rounded-xl transition text-sm" style="text-decoration:none;">
+                    View Demo <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Services CTA bar -->
+        <div class="mt-10 rounded-2xl p-7 text-center" style="background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(6,182,212,0.08)); border: 1px solid rgba(59,130,246,0.2);">
+            <p class="text-slate-300 text-base mb-5">
+                📞 Interested in a website for your business?
+                <span class="text-white font-semibold">Contact me today — I'll send you a free quote.</span>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/31687073858" target="_blank" class="btn-whatsapp" style="font-size:0.95rem; padding:12px 28px;">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    WhatsApp +31 687 073 858
+                </a>
+                <a href="mailto:nahomcoder@gmail.com"
+                   class="inline-flex items-center gap-2 bg-red-600/80 hover:bg-red-600 text-white font-semibold py-3 px-7 rounded-xl transition" style="text-decoration:none;">
+                    <i class="fas fa-envelope"></i>
+                    nahomcoder@gmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     PORTFOLIO SECTION
+════════════════════════════════════════════════ -->
+<section id="portfolio" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm font-semibold text-blue-400 uppercase tracking-widest mb-3">My Work</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">Featured Projects</h2>
+        <div class="divider"></div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="h-48 overflow-hidden">
+                    <img src="images/productdemo.png" alt="Web Shop Cart" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-white mb-2">Web Shop Cart 🛒</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Feature-rich e-commerce platform with cart functionality, user authentication, and payment integration.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="tag bg-blue-500/15 text-blue-400 border border-blue-500/20">Laravel</span>
+                        <span class="tag bg-purple-500/15 text-purple-400 border border-purple-500/20">Bootstrap</span>
+                        <span class="tag bg-yellow-500/15 text-yellow-400 border border-yellow-500/20">jQuery</span>
+                    </div>
+                    <a href="https://github.com/nahom17/Laravel-Learning-Projects/tree/main" target="_blank"
+                       class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-semibold transition" style="text-decoration:none;">
+                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <!-- Micro CTA -->
+                    <div class="mt-4 pt-4 border-t border-white/5">
+                        <p class="text-xs text-slate-500 mb-2">Want something like this?</p>
+                        <a href="#contact"
+                           class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition" style="text-decoration:none;">
+                            <i class="fas fa-paper-plane"></i> Request a Quote
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="h-48 overflow-hidden">
+                    <img src="images/crmdemo.png" alt="CRM System" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-white mb-2">CRM System 📊</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Comprehensive customer relationship management system with contact management and analytics dashboard.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="tag bg-blue-500/15 text-blue-400 border border-blue-500/20">Laravel</span>
+                        <span class="tag bg-purple-500/15 text-purple-400 border border-purple-500/20">Bootstrap</span>
+                    </div>
+                    <a href="https://github.com/nahom17/Laravel-Learning-Projects/tree/main" target="_blank"
+                       class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-semibold transition" style="text-decoration:none;">
+                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <div class="mt-4 pt-4 border-t border-white/5">
+                        <p class="text-xs text-slate-500 mb-2">Want something like this?</p>
+                        <a href="#contact"
+                           class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition" style="text-decoration:none;">
+                            <i class="fas fa-paper-plane"></i> Request a Quote
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="h-48 overflow-hidden">
+                    <img src="images/webblogdemo.png" alt="News Blog" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-white mb-2">News Blog Platform 📰</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Modern article publishing platform with categories, tags, and content management system.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="tag bg-blue-500/15 text-blue-400 border border-blue-500/20">Laravel</span>
+                        <span class="tag bg-purple-500/15 text-purple-400 border border-purple-500/20">Bootstrap</span>
+                    </div>
+                    <a href="https://github.com/nahom17/Laravel-Learning-Projects/tree/main" target="_blank"
+                       class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-semibold transition" style="text-decoration:none;">
+                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <div class="mt-4 pt-4 border-t border-white/5">
+                        <p class="text-xs text-slate-500 mb-2">Want something like this?</p>
+                        <a href="#contact"
+                           class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition" style="text-decoration:none;">
+                            <i class="fas fa-paper-plane"></i> Request a Quote
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <section id="skills" class="py-5 bg-white">
-        <div class="container">
-            <h2 class="text-center mb-4">Skills</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="skill-card">
-                        <i class="fab fa-php fa-3x" style="color: #1F222E;"></i>
-                        <h3>PHP</h3>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="skill-card">
-                        <i class="fab fa-laravel fa-3x" style="color: #fa0542;"></i>
-                        <h3>Laravel</h3>
-                    </div>
-                </div>
-                <!-- live -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="skill-card">
-                        <i class="fab fa-bootstrap fa-3x" style="color: #7611F7;"></i>
-                        <h3>Bootstrap</h3>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="skill-card">
-                        <i class="fas fa-database fa-3x"></i>
-                        <h3>SQL Database</h3>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="skill-card">
-                        <i class="fab fa-git fa-3x" style="color:#413932;"></i>
-                        <h3>Git</h3>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="skill-card">
-                        <i class="fab fa-gitlab fa-3x" style="color:#E24329;"></i>
-                        <h3>GitLab</h3>
-                    </div>
-                </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     WHY HIRE ME SECTION
+════════════════════════════════════════════════ -->
+<section class="py-24 section-alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm font-semibold text-blue-400 uppercase tracking-widest mb-3">Why me?</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center text-white mb-4">Why Work With Me?</h2>
+        <div class="divider"></div>
+
+        <div class="grid md:grid-cols-3 gap-7">
+
+            <div class="why-card p-8 text-center">
+                <div class="text-5xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold text-white mb-3">Fast Delivery</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    I build focused, production-ready apps without unnecessary bloat. Your project ships on time.
+                </p>
+            </div>
+
+            <div class="why-card p-8 text-center" style="border-color: rgba(59,130,246,0.25); background: rgba(59,130,246,0.05);">
+                <div class="text-5xl mb-4">🎯</div>
+                <h3 class="text-xl font-bold text-white mb-3">Business-Focused</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    I understand what small businesses need — not just clean code, but real results that grow your customer base.
+                </p>
+            </div>
+
+            <div class="why-card p-8 text-center">
+                <div class="text-5xl mb-4">🤝</div>
+                <h3 class="text-xl font-bold text-white mb-3">Direct Communication</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    You talk directly with me — no agencies, no middlemen, no delays. Fast replies via WhatsApp.
+                </p>
             </div>
         </div>
-    </section>
-    <!-- Portfolio Section -->
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Portfolio</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="images/productdemo.png" class="card-img-top" alt="Web Shop Cart">
-                        <div class="card-body  bg-dark text-white">
-                            <h5 class="card-title">Web Shop Cart 🛒</h5>
-                            <p class="card-text"><strong>Technologies:</strong> Laravel, Bootstrap, jQuery</p>
-                            <p class="card-text">Developed a feature-rich web shop using Laravel, Bootstrap, and jQuery.
-                            </p>
-                            <a href="https://github.com/nahom17/Laravel-Learning-Projects/tree/main" target="_blank"
-                                class="btn btn-primary float-right">Explore More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="images/crmdemo.png" class="card-img-top" alt="CRM Demo">
-                        <div class="card-body bg-dark text-white">
-                            <h5 class="card-title">CRM 📊</h5>
-                            <p class="card-text"><strong>Technologies:</strong> Laravel, Bootstrap</p>
-                            <p class="card-text">Engineered a robust customer relationship management system.</p>
-                            <a href="https://github.com/nahom17/Laravel-Learning-Projects/tree/main" target="_blank"
-                                class="btn btn-primary float-right">Explore More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="images/webblogdemo.png" class="card-img-top" alt="News Blog Web Page">
-                        <div class="card-body bg-dark text-white">
-                            <h5 class="card-title">News Blog Web Page 📰</h5>
-                            <p class="card-text"><strong>Technologies:</strong> Laravel, Bootstrap</p>
-                            <p class="card-text">Crafted an immersive article news web page employing Laravel and
-                                Bootstrap.</p>
-                            <a href="https://github.com/nahom17/Laravel-Learning-Projects/tree/main" target="_blank"
-                                class="btn btn-primary float-right">Explore More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CONTACT SECTION
+════════════════════════════════════════════════ -->
+<section id="contact" class="py-24" style="background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(59,130,246,0.12) 0%, transparent 70%), var(--navy);">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-sm font-semibold text-blue-400 uppercase tracking-widest mb-3">Let's connect</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-5">Let's Build Something Together</h2>
+
+        <p class="text-xl text-slate-300 mb-2">
+            🚀 Available for freelance projects & collaborations
+        </p>
+        <p class="text-slate-400 text-base mb-10 leading-relaxed max-w-xl mx-auto">
+            Got a business idea? Need a restaurant site, booking system, or custom Laravel app?
+            I offer a <span class="text-blue-400 font-semibold">free 30-minute consultation</span> to discuss your project — no strings attached.
+        </p>
+
+        <!-- Primary CTA — WhatsApp -->
+        <div class="mb-6">
+            <a href="https://wa.me/31687073858" target="_blank" class="btn-whatsapp text-lg">
+                <i class="fab fa-whatsapp text-2xl"></i>
+                Book a Free Chat on WhatsApp
+            </a>
         </div>
-    </section>
 
-    <!-- Contact Section -->
+        <p class="text-slate-500 text-sm mb-3">or reach out via email</p>
+        <a href="mailto:nahomcoder@gmail.com"
+           class="text-blue-400 hover:text-blue-300 text-base underline underline-offset-4 transition" style="text-decoration:underline;">
+            nahomcoder@gmail.com
+        </a>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="https://github.com/nahom17" target="_blank" class="social-icon"><i
-                            class="fab fa-github fa-2x"></i></a>
-                    <a href="https://www.youtube.com/channel/UCIMHXf1qvVBxoYfWFpk9hiw?view_as=subscriber" target="_blank"
-                        class="social-icon"><i class="fab fa-youtube fa-2x"></i></a>
-                    <a href="https://www.facebook.com/nahom.tesfamichael.90" target="_blank" class="social-icon"><i
-                            class="fab fa-facebook fa-2x"></i></a>
-                    <a href="https://www.linkedin.com/in/nahom-tesfamichael-87a2a7135/" target="_blank"
-                        class="social-icon"><i class="fab fa-linkedin fa-2x"></i></a>
-                    <a href="https://www.instagram.com/nahom.info.tube/" target="_blank" class="social-icon"><i
-                            class="fab fa-instagram fa-2x"></i></a>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-md-12">
-                    &copy;
-                    <script>document.write(new Date().getFullYear())</script> Nahom Tesfamichael
-                </div>
-            </div>
+        <!-- Social icons -->
+        <div class="mt-14 flex flex-wrap justify-center gap-4">
+            <a href="https://github.com/nahom17" target="_blank"
+               class="w-12 h-12 rounded-xl flex items-center justify-center transition hover:scale-110"
+               style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; text-decoration:none;"
+               onmouseover="this.style.background='rgba(59,130,246,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+                <i class="fab fa-github text-lg"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/nahom-tesfamichael-87a2a7135/" target="_blank"
+               class="w-12 h-12 rounded-xl flex items-center justify-center transition hover:scale-110"
+               style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; text-decoration:none;"
+               onmouseover="this.style.background='rgba(59,130,246,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+                <i class="fab fa-linkedin text-lg"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UCIMHXf1qvVBxoYfWFpk9hiw?view_as=subscriber" target="_blank"
+               class="w-12 h-12 rounded-xl flex items-center justify-center transition hover:scale-110"
+               style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; text-decoration:none;"
+               onmouseover="this.style.background='rgba(220,38,38,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+                <i class="fab fa-youtube text-lg"></i>
+            </a>
+            <a href="https://www.instagram.com/nahom.info.tube/" target="_blank"
+               class="w-12 h-12 rounded-xl flex items-center justify-center transition hover:scale-110"
+               style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; text-decoration:none;"
+               onmouseover="this.style.background='rgba(219,39,119,0.35)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+                <i class="fab fa-instagram text-lg"></i>
+            </a>
+            <a href="https://www.facebook.com/nahom.tesfamichael.90" target="_blank"
+               class="w-12 h-12 rounded-xl flex items-center justify-center transition hover:scale-110"
+               style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; text-decoration:none;"
+               onmouseover="this.style.background='rgba(37,99,235,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+                <i class="fab fa-facebook text-lg"></i>
+            </a>
         </div>
-    </footer>
+    </div>
+</section>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/script.js"></script>
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer style="background:#06080f; border-top:1px solid rgba(255,255,255,0.05);" class="py-7">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-slate-500 text-sm">&copy; <span id="year"></span> Nahom Tesfamichael. All rights reserved.</p>
+        <a href="https://wa.me/31687073858" target="_blank"
+           class="text-xs text-green-400 hover:text-green-300 transition flex items-center gap-2" style="text-decoration:none;">
+            <i class="fab fa-whatsapp"></i> Available for projects — let's talk
+        </a>
+    </div>
+</footer>
+
+
+<!-- ── Scripts ── -->
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu    = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Highlight active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => {
+            if (window.scrollY >= s.offsetTop - 90) current = s.id;
+        });
+        document.querySelectorAll('.nav-link').forEach(a => {
+            a.style.color = a.getAttribute('href') === '#' + current ? '#60a5fa' : '';
+        });
+    });
+</script>
+</body>
+</html>
